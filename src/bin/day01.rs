@@ -45,16 +45,6 @@ use anyhow::{anyhow, Result};
 
 const PUZZLE_INPUT: &str = include_str!("../inputs/day01.txt");
 
-fn main() -> Result<()> {
-    let floor = get_floor(PUZZLE_INPUT)?;
-
-    let first_in_basement = first_char_to_enter_basement(PUZZLE_INPUT)?;
-
-    println!("Part 1: {floor}");
-    println!("Part 2: {first_in_basement}");
-    Ok(())
-}
-
 fn get_floor(s: &str) -> Result<i32> {
     let mut floor = 0;
     for char in s.chars() {
@@ -80,6 +70,16 @@ fn first_char_to_enter_basement(s: &str) -> Result<usize> {
         }
     }
     Err(anyhow!("Santa never entered the basement"))
+}
+
+fn main() -> Result<()> {
+    let floor = get_floor(PUZZLE_INPUT)?;
+
+    let first_in_basement = first_char_to_enter_basement(PUZZLE_INPUT)?;
+
+    println!("Part 1: {floor}");
+    println!("Part 2: {first_in_basement}");
+    Ok(())
 }
 
 #[cfg(test)]
