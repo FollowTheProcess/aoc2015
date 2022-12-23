@@ -119,7 +119,7 @@ mod test {
     }
 
     #[test]
-    fn test_paper_required() -> Result<()> {
+    fn test_paper_required() {
         let present = Present {
             length: 2,
             width: 3,
@@ -133,11 +133,10 @@ mod test {
             height: 10,
         };
         assert_eq!(present.paper_required(), 43);
-        Ok(())
     }
 
     #[test]
-    fn test_ribbon_required() -> Result<()> {
+    fn test_ribbon_required() {
         let present = Present {
             length: 2,
             width: 3,
@@ -151,6 +150,5 @@ mod test {
             height: 10,
         };
         assert_eq!(present.ribbon_required(), 14);
-        Ok(())
     }
 }
