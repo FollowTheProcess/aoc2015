@@ -13,4 +13,5 @@ default-run = "aoc2015"
 
 [dependencies]
 anyhow = "1.0.68"
+itertools = "0.10.5"
 md5 = "0.7.0"
