@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Set Up Rust
-        uses: actions-rust/toolchain@v1
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: Set Up Rust
-        uses: actions-rust/toolchain@v1
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - name: Set Up Rust
-        uses: actions-rust/toolchain@v1
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
