@@ -18,6 +18,13 @@ fn main() -> Result<()> {
         .args(["run", "--release", "--bin", &format!("day{day}")])
         .output()?;
 
+    if !cmd.status.success() {
+        return Err(anyhow!(
+            "Failed to run day {day}: {}",
+            String::from_utf8(cmd.stderr)?
+        ));
+    }
+
     let output = String::from_utf8(cmd.stdout)?;
 
     let message = if output.is_empty() {
