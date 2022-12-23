@@ -13,3 +13,4 @@ default-run = "aoc2015"
 
 [dependencies]
 anyhow = "1.0.68"
+md5 = "0.7.0"
