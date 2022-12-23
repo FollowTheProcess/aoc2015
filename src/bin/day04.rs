@@ -22,7 +22,7 @@ Now find one that starts with six zeroes.
 
 #![warn(clippy::pedantic)]
 
-const PUZZLE_INPUT: &str = "iwrupvqb";
+const PUZZLE_INPUT: &str = include_str!("../inputs/day04.txt");
 
 fn find_md5_with_five_zeros(secret: &str, startswith: &str) -> u32 {
     let mut i = 0;
@@ -37,8 +37,8 @@ fn find_md5_with_five_zeros(secret: &str, startswith: &str) -> u32 {
 }
 
 fn main() {
-    let part1 = find_md5_with_five_zeros(PUZZLE_INPUT, "00000");
-    let part2 = find_md5_with_five_zeros(PUZZLE_INPUT, "000000");
+    let part1 = find_md5_with_five_zeros(PUZZLE_INPUT.trim(), "00000");
+    let part2 = find_md5_with_five_zeros(PUZZLE_INPUT.trim(), "000000");
 
     println!("Part 1: {part1}");
     println!("Part 2: {part2}");
