@@ -9,5 +9,7 @@ homepage = "https://github.com/FollowTheProcess/aoc2015"
 repository = "https://github.com/FollowTheProcess/aoc2015"
 readme = "README.md"
 publish = false
+default-run = "aoc2015"
 
 [dependencies]
+anyhow = "1.0.68"
