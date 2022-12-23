@@ -1,0 +1,13 @@
+[package]
+name = "aoc2015"
+version = "0.1.0"
+edition = "2021"
+authors = [ "Tom Fleet <tomfleet2018@gmail.com>" ]
+description = "My solutions to Advent of Code 2015, in Rust, whilst learning Rust... what could go wrong?"
+license = "MIT License"
+homepage = "https://github.com/FollowTheProcess/aoc2015"
+repository = "https://github.com/FollowTheProcess/aoc2015"
+readme = "README.md"
+publish = false
+
+[dependencies]
