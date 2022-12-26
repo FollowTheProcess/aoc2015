@@ -48,7 +48,7 @@ code in each original string literal. For example, for the strings above, the to
 the characters in the original code representation (23, just like in the first part of this puzzle) is 42 - 23 = 19.
 */
 
-#[warn(clippy::pedantic)]
+#![warn(clippy::pedantic)]
 
 const PUZZLE_INPUT: &str = include_str!("../inputs/day08.txt");
 
@@ -65,11 +65,12 @@ fn memory_size(s: &str) -> usize {
 
         if c == '"' {
             continue;
-        } else if c == '\\' {
+        }
+
+        if c == '\\' {
             let next = chars.next().unwrap();
             match next {
-                '\\' => {}
-                '"' => {}
+                '\\' | '"' => {}
                 'x' => {
                     assert!(chars.next().unwrap().is_ascii_hexdigit());
                     assert!(chars.next().unwrap().is_ascii_hexdigit());
@@ -123,8 +124,8 @@ fn main() {
     let part1 = solve(PUZZLE_INPUT);
     let part2 = solve_part2(PUZZLE_INPUT);
 
-    println!("Part1: {part1}");
-    println!("Part 2: {part2}")
+    println!("Part 1: {part1}");
+    println!("Part 2: {part2}");
 }
 
 #[cfg(test)]
