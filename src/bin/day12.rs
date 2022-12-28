@@ -41,6 +41,7 @@ const PUZZLE_INPUT: &str = include_str!("../inputs/day12.txt");
 const NUMERIC_REGEX: &str = r"(-?\d+)";
 
 use anyhow::Result;
+use json::JsonValue;
 use regex::Regex;
 
 fn sum_all_digits(input: &str) -> Result<i32> {
@@ -54,9 +55,26 @@ fn sum_all_digits(input: &str) -> Result<i32> {
     Ok(sum)
 }
 
+fn sum_all_digits_part2(v: &JsonValue) -> i32 {
+    match v {
+        JsonValue::Number(i) => i.to_string().parse().unwrap(),
+        JsonValue::Object(o) => {
+            if o.iter().any(|v| v.1 == "red") {
+                0
+            } else {
+                o.iter().map(|v| sum_all_digits_part2(v.1)).sum()
+            }
+        }
+        JsonValue::Array(a) => a.iter().map(sum_all_digits_part2).sum(),
+        _ => 0,
+    }
+}
+
 fn main() -> Result<()> {
     let part1 = sum_all_digits(PUZZLE_INPUT.trim())?;
+    let part2 = sum_all_digits_part2(&json::parse(PUZZLE_INPUT.trim())?);
     println!("Part 1: {part1}");
+    println!("Part 2: {part2}");
 
     Ok(())
 }
@@ -66,7 +84,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_find_digits() -> Result<()> {
+    fn test_sum_digits() -> Result<()> {
         assert_eq!(sum_all_digits("1")?, 1);
         assert_eq!(sum_all_digits("1,2,3")?, 6);
         assert_eq!(sum_all_digits("[1,2,3]")?, 6);
@@ -74,6 +92,22 @@ mod test {
         assert_eq!(sum_all_digits("[[[3]]]")?, 3);
         assert_eq!(sum_all_digits(r#"{"a":{"b":4},"c":-1}"#)?, 3);
         assert_eq!(sum_all_digits("{}")?, 0);
+
+        Ok(())
+    }
+
+    #[test]
+    fn test_sum_digits_part2() -> Result<()> {
+        assert_eq!(sum_all_digits_part2(&json::parse("[1,2,3]")?), 6);
+        assert_eq!(
+            sum_all_digits_part2(&json::parse(r#"[1,{"c":"red","b":2},3]"#)?),
+            4
+        );
+        assert_eq!(
+            sum_all_digits_part2(&json::parse(r#"{"d":"red","e":[1,2,3,4],"f":5}"#)?),
+            0
+        );
+        assert_eq!(sum_all_digits_part2(&json::parse(r#"[1,"red",5]"#)?), 6);
 
         Ok(())
     }
